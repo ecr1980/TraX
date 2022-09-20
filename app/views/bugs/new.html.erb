@@ -1,0 +1,11 @@
+<%= form_with model: @bug do |f| %>
+  <%= f.label :description, "A description of the bug, including expected behavior and the actual resulting behavior." %><br>
+  <%= f.text_area :description, row: 5 %><br>
+  <%= f.label :steps, "Steps to recreate the problem." %><br>
+  <%= f.text_area :steps, row: 5 %><br>
+  <%= f.label :severity, "Severity from 1 to 10, with 10 being the highest" %><br>
+  <%= f.number_field :severity, in: 1..10 %><br>
+  <%= f.label :version, "Version: x.x.x format." %><br>
+  <%= f.text_area :version, row: 1 %><br>  
+  <%= f.submit %>
+<% end %>

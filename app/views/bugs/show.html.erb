@@ -1,0 +1,19 @@
+<h1>Description:</h1>
+<br>
+<%= @bug.description %>
+<br>
+<br>
+<h2>Steps:</h2>
+<br>
+<%= @bug.steps %>
+<br>
+<br>
+<h3>Version: </h3> <%= @bug.version%> <h3> Created by: </h3> <%= @bug.user.email %> 
+Bug is currently 
+  <% if @bug.open == true %> 
+    Open
+  <% else %>
+    Closed
+<% end %> <br>
+Submitted at: <%= @bug.created_at %>
+

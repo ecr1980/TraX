@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SkycloakBugTracker</title>
+    <title>Program Bug Tracker</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,47 @@
   </head>
 
   <body>
+    <div class="top-bar">
+      <div class="title">
+        <h1>Program Bug Tracker</h1>
+      </div>
+      <div class="user-options">
+        <% if user_signed_in? %>
+          <div class="user-option"><%= link_to "Log Out", destroy_user_session_path %></div>
+          <div class="user-option">User Settings</div>
+        <% else %>
+          <div class="user-option"><%= link_to "Sign In", new_user_session_path %></div>
+          <div class="user-option"><%= link_to "Create Account", new_user_registration_path %></div>
+        <% end %>
+      </div>
+      <div class="bug-bar">
+        <div class="search-box">
+          <form>
+            <input type="text" id="bug-search" name="bug-search"><button>Search</button><br>
+            <input type="radio" id="date" name="sort-by" value="date">
+            <label for="date">date</label>
+            <input type="radio" id="keyword" name="sort-by" value="keyword">
+            <label for="date">keyword</label>
+            <input type="radio" id="urgency" name="sort-by" value="urgency">
+            <label for="date">urgency</label>
+            <input type="radio" id="user" name="sort-by" value="user">
+            <label for="date">user</label>
+            <input type="radio" id="version" name="sort-by" value="version">
+            <label for="date">version</label>
+            <input type="checkbox" id="open-tickets" name="open-tickets" checked>
+            <label for="open-tickets">only show open tickets</label>
+          </form>
+        </div>
+        <div class="create-box">
+          <%= link_to "Report Bug", new_bug_path %>
+        </div>
+      </div>
+      <div class="content-display">
+        <div class="content-display-options">
+          toggle for display by date, keyword, urgency, user, version, open(default)  Show 5 / 10 / 25 / 100 / All.
+        </div>
+      </div>
+    </div>
     <%= yield %>
   </body>
 </html>

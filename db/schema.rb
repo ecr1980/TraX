@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_16_145625) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_16_154026) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_145625) do
     t.string "version"
     t.text "description"
     t.text "steps"
+    t.boolean "open"
     t.index ["user_id"], name: "index_bugs_on_user_id"
   end
 
