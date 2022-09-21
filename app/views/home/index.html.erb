@@ -8,7 +8,7 @@
         <th>Description</th>
         <th>Version</th>
         <th>User</th>
-        <th>Open</th>
+        <th>Bug #</th>
       </tr>
       <% @bugs.each do |bug| %>
         <tr>
@@ -16,7 +16,7 @@
           <th><%= link_to "#{bug.description}", bug_path(bug.id) %></th>
           <th><%= link_to "#{bug.version}", bug_path(bug.id) %></th>
           <th><%= link_to "#{bug.user.email}", bug_path(bug.id) %></th>
-          <th><%= link_to "#{bug.open}", bug_path(bug.id) %></th>
+          <th><%= link_to "#{bug.id}", bug_path(bug.id) %></th>
         </tr>
       <% end %>
     </table>

@@ -23,11 +23,19 @@
           <div class="user-option"><%= link_to "Sign In", new_user_session_path %></div>
           <div class="user-option"><%= link_to "Create Account", new_user_registration_path %></div>
         <% end %>
+        <div class="user-option"><%= link_to "Home", root_path %></div>
       </div>
       <div class="bug-bar">
         <div class="search-box">
           <form>
             <input type="text" id="bug-search" name="bug-search"><button>Search</button><br>
+          </form>
+        </div>
+        <div class="create-box">
+          <%= link_to "Report Bug", new_bug_path %>
+        </div>
+        <div class="sort-results">
+          <form>
             <input type="radio" id="date" name="sort-by" value="date">
             <label for="date">date</label>
             <input type="radio" id="keyword" name="sort-by" value="keyword">
@@ -40,15 +48,8 @@
             <label for="date">version</label>
             <input type="checkbox" id="open-tickets" name="open-tickets" checked>
             <label for="open-tickets">only show open tickets</label>
+            <button>Sort</button>
           </form>
-        </div>
-        <div class="create-box">
-          <%= link_to "Report Bug", new_bug_path %>
-        </div>
-      </div>
-      <div class="content-display">
-        <div class="content-display-options">
-          toggle for display by date, keyword, urgency, user, version, open(default)  Show 5 / 10 / 25 / 100 / All.
         </div>
       </div>
     </div>

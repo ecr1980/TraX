@@ -1,4 +1,6 @@
-<h1>Description:</h1>
+<h1>Bug <%= @bug.id %></h1>
+<br>
+<h2>Description</h2>
 <br>
 <%= @bug.description %>
 <br>
@@ -16,4 +18,16 @@ Bug is currently
     Closed
 <% end %> <br>
 Submitted at: <%= @bug.created_at %>
-
+<br>
+<br>
+Comments:<br>
+<div class="comment">
+  <% @bug.comments.each do |comment| %>
+    <%= comment.user.email %> at <%= comment.created_at %>:<br>
+    <%= comment.body %><br>
+    <br>
+  <% end %>
+</div>
+<br>
+Add comment:<br>
+  <%= render "comments/new" %>

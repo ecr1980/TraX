@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_16_154026) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_21_012703) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,7 +38,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_154026) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "bug_id"
-    t.text "comment"
+    t.text "body"
+    t.boolean "closed"
     t.index ["bug_id"], name: "index_comments_on_bug_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end

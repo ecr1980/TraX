@@ -9,5 +9,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
+  post "/bugs/:id" => "comments#create"
   # root "articles#index"
 end

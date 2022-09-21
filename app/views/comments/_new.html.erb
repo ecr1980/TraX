@@ -1,0 +1,7 @@
+<%= form_with model: @comment do |f| %>
+  <%= f.hidden_field :bug_id, :value => @bug.id %>
+  <%= f.text_area :body, row: 5 %><br>
+  <%= f.label :closed, "Close ticket?" %>
+  <%= f.check_box :closed %>  
+  <%= f.submit %>
+<% end %>
