@@ -36,18 +36,18 @@
         </div>
         <div class="sort-results">
           <form>
-            <input type="radio" id="date" name="sort-by" value="date">
-            <label for="date">date</label>
-            <input type="radio" id="keyword" name="sort-by" value="keyword">
-            <label for="date">keyword</label>
-            <input type="radio" id="urgency" name="sort-by" value="urgency">
+            <input type="radio" id="date" name="sort" value="newest">
+            <label for="newest">newest first</label>
+            <input type="radio" id="date" name="sort" value="oldest">
+            <label for="oldest">oldest first</label>
+            <input type="radio" id="urgency" name="sort" value="urgency">
             <label for="date">urgency</label>
-            <input type="radio" id="user" name="sort-by" value="user">
+            <input type="radio" id="user" name="sort" value="user">
             <label for="date">user</label>
-            <input type="radio" id="version" name="sort-by" value="version">
+            <input type="radio" id="version" name="sort" value="version">
             <label for="date">version</label>
-            <input type="checkbox" id="open-tickets" name="open-tickets" checked>
-            <label for="open-tickets">only show open tickets</label>
+            <input type="checkbox" id="closed" name="closed" unchecked>
+            <label for="closed">show closed tickets</label>
             <button>Sort</button>
           </form>
         </div>
