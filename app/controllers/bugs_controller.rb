@@ -5,6 +5,7 @@ class BugsController < ApplicationController
 
   def create
     @bug = Bug.new(bug_params)
+    @bug.keywords = @bug.keywords.downcase
     @bug.user_id = current_user.id
     @bug.open = true
     if @bug.save
@@ -22,7 +23,7 @@ class BugsController < ApplicationController
   private
 
   def bug_params
-    params.require(:bug).permit(:description, :steps, :severity, :version)
+    params.require(:bug).permit(:description, :steps, :severity, :version, :keywords)
   end
 
 end

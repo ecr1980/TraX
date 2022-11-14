@@ -1,18 +1,25 @@
 class HomeController < ApplicationController
   def index
-    @bugs = bug_on_or_off()
+    @keyword = keyword_filter()
+    @bugs = bug_conditions().uniq()
     @bugs = bug_sort(@bugs)
   end
 
   private
 
-  def bug_on_or_off()
-    if params[:closed] == "on"
-      bugs = Bug.all
+  def bug_conditions()
+    if @keyword == nil
+      bug = Bug.all
     else
-      bugs = Bug.all.where(open: true)
+      bug = keyword_included_bugs()
+      return bug
     end
-    return bugs
+    if params[:closed] == "on"
+      return bug
+    else
+      bugs = bug.all.where(open: true)
+      return bugs
+    end
   end
 
   def bug_sort(bugs)
@@ -33,4 +40,29 @@ class HomeController < ApplicationController
     return bugs
   end
 
+  def keyword_filter()
+    if params[:word] && params[:word] != ""
+      word = params[:word].downcase
+      removed_commas_word = word.gsub(",", "")
+      if removed_commas_word != nil
+        word = removed_commas_word
+      end
+      keyword_array = word.split(" ")
+      return keyword_array
+    end
+    return nil
+  end
+
+  def keyword_included_bugs()
+    bugs = Array.new
+    temp_bugs = Bug.all
+    @keyword.each do |word|
+      temp_bugs.each do |bug| 
+        if bug.keywords.include? word
+          bugs << bug
+        end
+      end
+    end
+    return bugs
+  end
 end

@@ -18,40 +18,14 @@
       <div class="user-options">
         <% if user_signed_in? %>
           <div class="user-option"><%= link_to "Log Out", destroy_user_session_path %></div>
-          <div class="user-option">User Settings</div>
+          <div class="user-option"><%= link_to "Edit Settings", edit_user_registration_path %></div>
         <% else %>
           <div class="user-option"><%= link_to "Sign In", new_user_session_path %></div>
           <div class="user-option"><%= link_to "Create Account", new_user_registration_path %></div>
         <% end %>
         <div class="user-option"><%= link_to "Home", root_path %></div>
       </div>
-      <div class="bug-bar">
-        <div class="search-box">
-          <form>
-            <input type="text" id="bug-search" name="bug-search"><button>Search</button><br>
-          </form>
-        </div>
-        <div class="create-box">
-          <%= link_to "Report Bug", new_bug_path %>
-        </div>
-        <div class="sort-results">
-          <form>
-            <input type="radio" id="date" name="sort" value="newest">
-            <label for="newest">newest first</label>
-            <input type="radio" id="date" name="sort" value="oldest">
-            <label for="oldest">oldest first</label>
-            <input type="radio" id="urgency" name="sort" value="urgency">
-            <label for="date">urgency</label>
-            <input type="radio" id="user" name="sort" value="user">
-            <label for="date">user</label>
-            <input type="radio" id="version" name="sort" value="version">
-            <label for="date">version</label>
-            <input type="checkbox" id="closed" name="closed" unchecked>
-            <label for="closed">show closed tickets</label>
-            <button>Sort</button>
-          </form>
-        </div>
-      </div>
+      
     </div>
     <%= yield %>
   </body>

@@ -1,3 +1,30 @@
+<div class="bug-bar">
+        <% if user_signed_in? %>
+          <div class="create-box">
+            <%= link_to "Report Bug", new_bug_path %>
+          </div>
+        <% else %>
+          <div><%= link_to "Sign in", new_user_session_path %> or <%= link_to "create account", new_user_registration_path%> to report bugs.</div>
+        <% end %>
+        <div class="sort-results">
+          <form>
+            <input type="hidden" id="search" name="search" value="true">
+            <input type="text" id="word" name="word" data-controller="search" %><button>Search</button><br>
+            <input type="radio" id="date" name="sort" value="newest" <% if (params[:sort] == "newest") %> checked <% end%>> 
+            <label for="newest">newest first</label>
+            <input type="radio" id="date" name="sort" value="oldest" <% if (params[:sort] == "oldest") %> checked <% end%>>
+            <label for="oldest">oldest first</label>
+            <input type="radio" id="urgency" name="sort" value="urgency" <% if (params[:sort] == "urgency") %> checked <% end%>>
+            <label for="date">urgency</label>
+            <input type="radio" id="user" name="sort" value="user" <% if (params[:sort] == "user") %> checked <% end%>>
+            <label for="date">user</label>
+            <input type="radio" id="version" name="sort" value="version" <% if (params[:sort] == "version") %> checked <% end%>>
+            <label for="date">version</label>
+            <input type="checkbox" id="closed" name="closed" <% if (params[:closed] == "on") %> checked <% end%>>
+            <label for="closed">show closed tickets</label>
+          </form>
+        </div>
+      </div>
 <div class="content">
   <% if @bugs.length == 0 %>
     No bugs reported yet.
@@ -20,5 +47,8 @@
         </tr>
       <% end %>
     </table>
+  <% end %>
+  <% if params[:word] %>
+    <%= params[:word] %>
   <% end %>
 </div>

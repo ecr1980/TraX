@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_21_012703) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_10_173711) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,14 +23,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_012703) do
     t.text "description"
     t.text "steps"
     t.boolean "open"
+    t.string "keywords"
     t.index ["user_id"], name: "index_bugs_on_user_id"
-  end
-
-  create_table "bugs_keywords", id: false, force: :cascade do |t|
-    t.bigint "bug_id"
-    t.bigint "keyword_id"
-    t.index ["bug_id"], name: "index_bugs_keywords_on_bug_id"
-    t.index ["keyword_id"], name: "index_bugs_keywords_on_keyword_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -42,12 +36,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_21_012703) do
     t.boolean "closed"
     t.index ["bug_id"], name: "index_comments_on_bug_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
-  create_table "keywords", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "word"
   end
 
   create_table "users", force: :cascade do |t|
