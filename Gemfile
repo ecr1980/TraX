@@ -51,6 +51,9 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+# CSS Framework:
+gem "bulma-rails", "~> 0.9.4"
+
 # For testing emails:
 gem "letter_opener", group: :development
 

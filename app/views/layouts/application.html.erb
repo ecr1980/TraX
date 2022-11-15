@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Program Bug Tracker</title>
+    <title>Trax</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,22 +11,30 @@
   </head>
 
   <body>
-    <div class="top-bar">
-      <div class="title">
-        <h1>Program Bug Tracker</h1>
-      </div>
-      <div class="user-options">
-        <% if user_signed_in? %>
-          <div class="user-option"><%= link_to "Log Out", destroy_user_session_path %></div>
-          <div class="user-option"><%= link_to "Edit Settings", edit_user_registration_path %></div>
-        <% else %>
-          <div class="user-option"><%= link_to "Sign In", new_user_session_path %></div>
-          <div class="user-option"><%= link_to "Create Account", new_user_registration_path %></div>
-        <% end %>
-        <div class="user-option"><%= link_to "Home", root_path %></div>
-      </div>
-      
+    <div class="body-container">
+        <div class="top-bar">
+          <div class="title">
+
+            <%# Bug tracking software in h1 so it will be included in any readers.%>
+            
+            <h1>TraX <div class="title-description">Bug tracking software</div></h1> 
+          </div>
+          <div class="user-options">
+            <% if user_signed_in? %>
+              <div class="user-option"><%= link_to "Log Out", destroy_user_session_path %></div>
+              <div class="user-option"><%= link_to "Edit Settings", edit_user_registration_path %></div>
+            <% else %>
+              <div class="user-option"><%= link_to "Sign In", new_user_session_path %></div>
+              <div class="user-option"><%= link_to "Create Account", new_user_registration_path %></div>
+            <% end %>
+            <div class="user-option"><%= link_to "Home", root_path %></div>
+          </div>
+          
+        </div>
+        <%= yield %>
+        <div class="support">
+          For Trax software support please email <a href="mailto:ecr1980@gmail.com">ecr1980@gmail.com</a>.
+        </div>
     </div>
-    <%= yield %>
   </body>
 </html>

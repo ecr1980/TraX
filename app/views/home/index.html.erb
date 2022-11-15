@@ -15,7 +15,7 @@
             <input type="radio" id="date" name="sort" value="oldest" <% if (params[:sort] == "oldest") %> checked <% end%>>
             <label for="oldest">oldest first</label>
             <input type="radio" id="urgency" name="sort" value="urgency" <% if (params[:sort] == "urgency") %> checked <% end%>>
-            <label for="date">urgency</label>
+            <label for="date">severity</label>
             <input type="radio" id="user" name="sort" value="user" <% if (params[:sort] == "user") %> checked <% end%>>
             <label for="date">user</label>
             <input type="radio" id="version" name="sort" value="version" <% if (params[:sort] == "version") %> checked <% end%>>
@@ -27,28 +27,31 @@
       </div>
 <div class="content">
   <% if @bugs.length == 0 %>
-    No bugs reported yet.
+    <div class="table-holder">
+    <br>
+      <div style="color:red;">There are no open tickets.</div>
+    <br>
+    </div>
   <% else %>
-    <table>
-      <tr>
-        <th>Urgency</th>
-        <th>Description</th>
-        <th>Version</th>
-        <th>User</th>
-        <th>Bug #</th>
-      </tr>
-      <% @bugs.each do |bug| %>
+    <div class="table-holder">
+      <table class="table">
         <tr>
-          <th><%= link_to "#{bug.severity}", bug_path(bug.id) %></th>
-          <th><%= link_to "#{bug.description}", bug_path(bug.id) %></th>
-          <th><%= link_to "#{bug.version}", bug_path(bug.id) %></th>
-          <th><%= link_to "#{bug.user.email}", bug_path(bug.id) %></th>
-          <th><%= link_to "#{bug.id}", bug_path(bug.id) %></th>
+          <th>Description</th>
+          <th>Severity</th>
+          <th>Version</th>
+          <th>User</th>
+          <th>Bug #</th>
         </tr>
-      <% end %>
-    </table>
-  <% end %>
-  <% if params[:word] %>
-    <%= params[:word] %>
+        <% @bugs.each do |bug| %>
+          <tr>
+            <th><%= link_to "#{bug.description}", bug_path(bug.id) %></th>
+            <th><%= "#{bug.severity}" %></th>
+            <th><%= "#{bug.version}" %></th>
+            <th><%= "#{bug.user.email}" %></th>
+            <th class="bug-id"><%= link_to "#{bug.id}", bug_path(bug.id) %></th>
+          </tr>
+        <% end %>
+      </table>
+    </div>
   <% end %>
 </div>

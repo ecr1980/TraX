@@ -6,14 +6,16 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
-    if @comment.save
-      if @comment.closed = true
-        @comment.bug.open = false
-        @comment.bug.save
+    if @comment.body != ""
+      if @comment.save
+        if @comment.closed == true
+          @comment.bug.open = false
+          @comment.bug.save
+        end
+        redirect_to bug_path(@comment.bug_id)
+      else
+        redirect_to bug_path(@comment.bug_id)
       end
-      redirect_to bug_path(@comment.bug_id)
-    else
-      redirect_to bug_path(@comment.bug_id)
     end
   end
 
@@ -24,6 +26,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body, :bug_id)
+    params.require(:comment).permit(:body, :bug_id, :closed)
   end
 end
