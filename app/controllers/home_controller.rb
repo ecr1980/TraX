@@ -8,16 +8,19 @@ class HomeController < ApplicationController
   private
 
   def bug_conditions()
-    if @keyword == nil
-      bug = Bug.all
-    else
+    bug = Bug.all
+    if @keyword != nil
       bug = keyword_included_bugs()
-      return bug
     end
     if params[:closed] == "on"
       return bug
     else
-      bugs = bug.all.where(open: true)
+      bugs = []
+      bug.each do |x|
+        if x.open 
+          bugs << x
+        end
+      end
       return bugs
     end
   end
